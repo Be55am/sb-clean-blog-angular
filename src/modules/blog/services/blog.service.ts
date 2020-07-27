@@ -1,15 +1,11 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { ConfigService } from '@common/services';
-import { Post } from '@modules/blog/models';
-import {
-    CreatePostPayload,
-    ResultsPost,
-    UpdatePostPayload,
-} from '@start-bootstrap/sb-clean-blog-shared-types';
-import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import {HttpClient, HttpParams} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Router} from '@angular/router';
+import {ConfigService} from '@common/services';
+import {Post} from '@modules/blog/models';
+import {CreatePostPayload, ResultsPost, UpdatePostPayload,} from '@start-bootstrap/sb-clean-blog-shared-types';
+import {Observable} from 'rxjs';
+import {map, tap} from 'rxjs/operators';
 
 @Injectable()
 export class BlogService {
@@ -17,11 +13,12 @@ export class BlogService {
         private http: HttpClient,
         private configService: ConfigService,
         private router: Router
-    ) {}
+    ) {
+    }
 
     getPosts$(): Observable<Post[]> {
         return this.http
-            .get<ResultsPost[]>(`${this.configService.config.sbCleanBlogNodeURL}/api/latest/posts`)
+            .get<ResultsPost[]>(`${this.configService.config.sbCleanBlogNodeURL}/dev/posts`)
             .pipe(
                 map(posts =>
                     (posts as Post[]).map(post => {
@@ -35,7 +32,7 @@ export class BlogService {
         const params = new HttpParams().set('findBy', 'slug');
         return this.http
             .get<ResultsPost>(
-                `${this.configService.config.sbCleanBlogNodeURL}/api/latest/posts/${postSlug}`,
+                `${this.configService.config.sbCleanBlogNodeURL}/dev/posts/${postSlug}`,
                 {
                     params,
                 }
@@ -44,10 +41,14 @@ export class BlogService {
     }
 
     createPost$(payload: CreatePostPayload): Observable<Post | Error> {
+        let slug = payload.heading;
+        slug = slug.replace(/\s+/g, '-');
+        payload.slug = slug;
+        payload.meta = new Date() + '';
+        console.log(JSON.stringify(payload));
+        console.log('slug :' + slug);
         return this.http
-            .post<ResultsPost>(
-                `${this.configService.config.sbCleanBlogNodeURL}/api/latest/posts`,
-                payload
+            .post<ResultsPost>(`${this.configService.config.sbCleanBlogNodeURL}/dev/posts`, payload
             )
             .pipe(
                 tap(response => this.router.navigate([`/${response.slug}`])),

@@ -21,7 +21,7 @@ export class AuthService {
     login$(loginPayload: LoginPayload): Observable<boolean> {
         return this.http
             .post<TokenResponse>(
-                `${this.configService.config.sbCleanBlogNodeURL}/api/latest/auth/login`,
+                `${this.configService.config.sbCleanBlogNodeURL}/dev/login`,
                 loginPayload
             )
             .pipe(

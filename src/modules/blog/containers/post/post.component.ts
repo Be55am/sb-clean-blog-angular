@@ -37,6 +37,7 @@ export class PostComponent implements OnInit, OnDestroy {
                 this.isLoggedIn = isLoggedIn;
             })
         );
+        this.post$.subscribe(res => console.log(res));
     }
 
     ngOnDestroy() {

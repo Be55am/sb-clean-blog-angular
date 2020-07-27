@@ -1,4 +1,4 @@
 {
-    "sbCleanBlogNodeURL": "http://localhost:8200",
+    "sbCleanBlogNodeURL": "https://2ctgxphck7.execute-api.us-east-1.amazonaws.com",
     "demoEnabled": false
 }

@@ -1,4 +1,4 @@
-<header class="masthead" [style.background-image]="safeBackgroudImage">
+<header class="masthead" [ngStyle]="{'background-image':'url('+backgroundImage+')'}">
     <div class="overlay"></div>
     <div class="container">
         <div class="row">
@@ -17,6 +17,6 @@
     ><div class="post-heading">
         <h1>{{heading}}</h1>
         <h2 class="subheading">{{subHeading}}</h2>
-        <span class="meta">{{meta}}</span>
+        <span class="meta">{{meta | date}}</span>
     </div></ng-template
 >

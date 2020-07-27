@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
+import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
+import {DomSanitizer, SafeStyle} from '@angular/platform-browser';
 
 @Component({
     selector: 'sb-clean-blog-header',
@@ -14,10 +14,9 @@ export class CleanBlogHeaderComponent implements OnInit {
     @Input() meta!: string;
     @Input() siteHeading = false;
 
-    safeBackgroudImage!: SafeStyle;
+    constructor(private domSanitizer: DomSanitizer) {
+    }
 
-    constructor(private domSanitizer: DomSanitizer) {}
     ngOnInit() {
-        this.safeBackgroudImage = this.domSanitizer.bypassSecurityTrustStyle(this.backgroundImage);
     }
 }

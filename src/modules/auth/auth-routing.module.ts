@@ -19,7 +19,7 @@ export const ROUTES: Routes = [
         canActivate: [],
         component: authContainers.LoginComponent,
         data: {
-            title: 'Pages Login - SB Clean Blog Angular',
+            title: 'Pages Login - Open Blog',
         } as SBRouteData,
     },
 ];
