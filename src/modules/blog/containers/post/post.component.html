@@ -1,14 +1,24 @@
-<sb-layout-blog *ngIf="(post$ | async) as post;"
->
+<sb-layout-blog *ngIf="(post$ | async) as post;">
     <sb-clean-blog-header [backgroundImage]="post.backgroundImage" [heading]="post.heading"
                           [subHeading]="post.subHeading" [meta]="post.meta"></sb-clean-blog-header>
     <article>
-        <div class="container">
+        <div class=" container col-12 ">
             <div class="row">
-                <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="col-lg-2 col-md-2">
+                    <button type="button" disabled class="btn btn-light col-12">
+                        <fa-icon [icon]="faCoffee"></fa-icon> :  324
+                    </button>
+<!--                    <button type="button" disabled class="btn btn-light col-12">-->
+<!--                        <fa-icon [icon]="thumbsUp"></fa-icon> :  123-->
+<!--                    </button>-->
+                </div>
+                <div class=" offset-2 col-lg-6 col-md-10 mx-auto">
                     <markdown ngPreserveWhitespaces>{{post.body}}</markdown>
                     <button class="btn btn-primary" *ngIf="isLoggedIn" type="button" (click)="editPost()">Edit Post
                     </button>
+                </div>
+                <div class="col-lg-2 col-md-1">
+                    <!-- HERE U CAN INSERT SOME ADDS OR SOMETHING  -->
                 </div>
             </div>
         </div>

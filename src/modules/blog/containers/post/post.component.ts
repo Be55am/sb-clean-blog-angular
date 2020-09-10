@@ -1,10 +1,13 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { AuthUtilsService } from '@modules/auth/services';
-import { Post } from '@modules/blog/models';
-import { BlogService } from '@modules/blog/services';
-import { Observable, Subscription } from 'rxjs';
-import { switchMap, tap } from 'rxjs/operators';
+import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
+import {faThumbsUp} from '@fortawesome/free-regular-svg-icons';
+import {faGlasses} from '@fortawesome/free-solid-svg-icons';
+import {AuthUtilsService} from '@modules/auth/services';
+import {Post} from '@modules/blog/models';
+import {BlogService} from '@modules/blog/services';
+import {Observable, Subscription} from 'rxjs';
+import {switchMap, tap} from 'rxjs/operators';
+
 
 @Component({
     selector: 'sb-post',
@@ -19,13 +22,17 @@ export class PostComponent implements OnInit, OnDestroy {
     isLoggedIn = false;
     post$!: Observable<Post | null>;
     post!: string;
+    faCoffee = faGlasses;
+    thumbsUp = faThumbsUp;
+
 
     constructor(
         private route: ActivatedRoute,
         private router: Router,
         private blogService: BlogService,
         private authUtilsService: AuthUtilsService
-    ) {}
+    ) {
+    }
 
     ngOnInit() {
         this.post$ = this.route.paramMap.pipe(
