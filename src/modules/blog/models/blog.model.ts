@@ -6,4 +6,5 @@ export interface Post {
     subHeading: string;
     meta: string;
     body: string;
+    postreads: number;
 }
