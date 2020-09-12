@@ -72,6 +72,7 @@ export class DemoInterceptor implements HttpInterceptor {
                         subHeading: body.subHeading,
                         body: body.body,
                         meta: format(new Date(), 'MMMM d, yyyy'),
+                        postreads: 100,
                     };
                     this.posts.unshift(newPost);
                     this._savePosts();

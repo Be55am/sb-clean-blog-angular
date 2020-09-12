@@ -10,6 +10,7 @@ export class MockPost implements Post {
     subHeading = 'TEST_SUB_HEADING';
     meta = 'TEST_META';
     body = 'TEST_BODY';
+    postreads = 100;
 }
 
 export class MockPostFormValue {
