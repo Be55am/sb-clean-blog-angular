@@ -6,7 +6,7 @@ import {AuthUtilsService} from '@modules/auth/services';
 import {Post} from '@modules/blog/models';
 import {BlogService} from '@modules/blog/services';
 import {Observable, Subscription} from 'rxjs';
-import {switchMap, tap} from 'rxjs/operators';
+import {distinctUntilChanged, switchMap, tap} from 'rxjs/operators';
 
 
 @Component({
@@ -35,8 +35,9 @@ export class PostComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.post$ = this.route.paramMap.pipe(
+        this.post$ = this.route.paramMap.pipe(distinctUntilChanged()).pipe(
             tap((params: ParamMap) => (this.post = params.get('post') as string)),
+            distinctUntilChanged(),
             switchMap((params: ParamMap) => this.blogService.getPost$(params.get('post') as string))
         );
         this.subscription.add(
@@ -44,7 +45,6 @@ export class PostComponent implements OnInit, OnDestroy {
                 this.isLoggedIn = isLoggedIn;
             })
         );
-        this.post$.subscribe(res => console.log(res));
     }
 
     ngOnDestroy() {

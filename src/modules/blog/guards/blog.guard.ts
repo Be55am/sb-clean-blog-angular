@@ -12,13 +12,13 @@ export class PostGuard implements CanActivate {
     }
 
     _canActivate(_next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-        return this.blogService.getPost$(_next.params.post).pipe(
-            switchMap(post => {
-                if (post) {
+        // return this.blogService.getPost$(_next.params.post).pipe(
+        //     switchMap(post => {
+        //         if (post) {
                     return of(true);
-                }
-                return of(false);
-            })
-        );
+        //         }
+        //         return of(false);
+        //     })
+        // );
     }
 }
