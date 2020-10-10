@@ -43,8 +43,7 @@ export class BlogService {
 
     createPost$(payload: CreatePostPayload): Observable<Post | Error> {
         let slug = payload.heading;
-        slug = slug.replace(/\s+/g, '-');
-        slug = slug.replace(/[^a-zA-Z0-9]/g, '');
+        slug = slug.replace(/[^a-zA-Z0-9]/g, '-');
         payload.slug = slug;
         payload.meta = new Date() + '';
         console.log(JSON.stringify(payload));
