@@ -7,6 +7,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
     styleUrls: ['footer.component.scss'],
 })
 export class FooterComponent implements OnInit {
+    date = Date.now();
     constructor() {}
     ngOnInit() {}
 }
